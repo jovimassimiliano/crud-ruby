@@ -1,0 +1,6 @@
+<h1>List of Suggestion</h1>
+<%= link_to "Back", suggestions_path %>
+<p>Title: <%= @suggestion.title %></p>
+<p>Description: <%= @suggestion.description %></p>
+
+<%= link_to "Edit", edit_suggestion_path(@suggestion) %>

@@ -1,0 +1,17 @@
+<h1>All Suggestion</h1>
+<%= link_to "Create new suggestion", new_suggestion_path%>
+<table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+    </tr>
+    <% @articles.each do|article|%>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.description %></td>
+        <td><%= link_to "Show", suggestion_path(article)%></td>
+        <td><%= link_to "Edit", edit_suggestion_path(article)%></td>
+        <td><%= link_to "Delete", suggestion_path(article), method: :delete, data: {confirm:"Are you sure?"}%></td>
+      </tr>
+    <% end %>
+</table>
