@@ -1,2 +1,24 @@
+$navbar-default-bg: #1fb2a3;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body{
+  font-family: "Open Sans",sans-serif;
+}
+
+#logo{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+
+.container .jumbotron{
+  background: -webkit-linear-gradient(left,rgba(31, 178, 163, 1),rgba(31, 178, 163, 0.75) );
+  height: 300px;
+  color: #fff;
+}
+
+.center{
+  text-align: center;
+}

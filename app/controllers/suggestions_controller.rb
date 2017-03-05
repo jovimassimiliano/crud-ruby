@@ -1,6 +1,10 @@
 class SuggestionsController < ApplicationController
   before_action :set_suggestion, only:[:edit,:show,:destroy,:update]
 
+  def home
+
+  end
+
   def index
     @articles = Suggestion.all
   end
