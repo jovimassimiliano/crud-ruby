@@ -16,7 +16,7 @@ class SuggestionsController < ApplicationController
   def create
     # render plain: params[:suggestion].inspect
     @suggestion = Suggestion.new (suggestion_params)
-    @suggestion.user = User.first
+  
     if @suggestion.save
       flash[:success] = "Successfully created..."
       redirect_to suggestion_path(@suggestion)
