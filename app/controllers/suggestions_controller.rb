@@ -6,7 +6,7 @@ class SuggestionsController < ApplicationController
   end
 
   def index
-    @articles = Suggestion.all
+    @suggestions = Suggestion.all
   end
 
   def new
@@ -18,7 +18,7 @@ class SuggestionsController < ApplicationController
     @suggestion = Suggestion.new (suggestion_params)
 
     if @suggestion.save
-      flash[:notice] = "Successfully created..."
+      flash[:success] = "Successfully created..."
       redirect_to suggestion_path(@suggestion)
     else
       render "new"
@@ -31,10 +31,10 @@ class SuggestionsController < ApplicationController
 
   def update
     if @suggestion.update(suggestion_params)
-      flash[:notice] = "Successfully updated..."
+      flash[:success] = "Successfully updated..."
       redirect_to suggestion_path(@suggestion)
     else
-      render "new"
+      render "edit"
     end
   end
 
@@ -44,7 +44,7 @@ class SuggestionsController < ApplicationController
 
   def destroy
     @suggestion.destroy
-    flash[:notice] = "Successfully deleted..."
+    flash[:danger] = "Successfully deleted..."
 
     redirect_to suggestions_path
   end

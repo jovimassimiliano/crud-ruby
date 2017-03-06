@@ -1,6 +1,11 @@
-<h1>List of Suggestion</h1>
-<%= link_to "Back", suggestions_path %>
-<p>Title: <%= @suggestion.title %></p>
-<p>Description: <%= @suggestion.description %></p>
+<h1 class="text-center"><%= @suggestion.title %></h1>
 
-<%= link_to "Edit", edit_suggestion_path(@suggestion) %>
+<div class="well">
+    <p><%= simple_format(@suggestion.description) %></p>
+    <div class="action">
+      <%= link_to "Edit", edit_suggestion_path(@suggestion), class:"btn btn-primary" %>
+      <%= link_to "Delete", suggestions_path(@suggestion), method: :delete, data: {confirm:"Are you sure?"}, class:"btn btn-danger"%>
+      <%= link_to "View All Suggestions", suggestions_path, class:"btn btn-success"%>
+    </div>
+
+</div>

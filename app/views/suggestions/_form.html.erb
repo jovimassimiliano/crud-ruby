@@ -1,26 +1,43 @@
-<%= link_to "Back", suggestions_path %>
-<% if @suggestion.errors.any? %>
-  <h3>There are some errors:</h3>
-  <% @suggestion.errors.full_messages.each do |msg|%>
-    <ul>
-      <li><%= msg %></li>
-    </ul>
-  <% end %>
-<% end %>
+<%= render "shared/error",obj:@suggestion %>
 
 
-<%= form_for @suggestion do|f|%>
-  <p>
-    <%= f.label :title%><br>
-    <%= f.text_field :title%>
-  </p>
 
-  <p>
-    <%= f.label :description%><br>
-    <%= f.text_area :description%>
-  </p>
 
-  <p>
-    <%= f.submit%>
-  </p>
-<% end %>
+<div class="row">
+  <div class="col-sm-12">
+    <%= form_for(@suggestion,:html => {class:"form-horizontal",role:"form"}) do|f|%>
+      <div class="form-group">
+        <div class="col-md-2">
+            <%= f.label :title%>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :title, class:"form-control",placeholder:"Enter your title",autofocus:"true"%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-2">
+          <%= f.label :description%>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_area :description, class:"form-control",rows:"10", placeholder:"Enter your description"%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+          <%= f.submit class:"btn btn-success"%>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+          <%= link_to "Cancel", suggestions_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
