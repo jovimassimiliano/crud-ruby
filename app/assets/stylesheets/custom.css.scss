@@ -2,6 +2,7 @@ $navbar-default-bg: #1fb2a3;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 body{
   font-family: "Open Sans",sans-serif;
@@ -21,6 +22,10 @@ body{
 
 .jumbotron h1{
   margin-bottom: 30px;
+}
+
+.user{
+
 }
 
 .action{
