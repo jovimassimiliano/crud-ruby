@@ -1,0 +1,14 @@
+<div class="text-center">
+  <h1><%= @user.username%>'s profile</h1>
+  <small><i class="fa fa-pencil"></i> <%= pluralize(@user.suggestions.count, "suggestion")%></small>
+</div>
+
+<% if @user.suggestions.count != 0 %>
+  <%= render "suggestions/suggestion", obj:@user.suggestions%>
+<% else %>
+  <div class="well">
+    <p>There is no suggestion you create</p>
+    <%= link_to "Create New Suggestion", new_suggestion_path%>
+  </div>
+
+<% end %>
