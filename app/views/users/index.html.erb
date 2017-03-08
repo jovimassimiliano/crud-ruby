@@ -1,0 +1,18 @@
+<h1> All User</h1>
+
+<% @users.each do|user|%>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="well">
+        <ul class="list">
+          <li><%= link_to user.username, user_path(user) %></li>
+          <li><%= pluralize(user.suggestions.count,"suggestion") if user.suggestions%></li>
+          <% if !current_user.admin? || current_user.admin?%>
+          <li><%= link_to "Delete User",user_path(user),method: :delete,data: {confirm:"Are you sure want to delete this user and all their articles"}%></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+<% end %>

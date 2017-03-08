@@ -1,23 +1,4 @@
 <h1>All Suggestions</h1>
 <%= link_to "+ New Suggestion", new_suggestion_path%>
 
-<% @suggestions.each do|suggestion|%>
-  <div class="well well-lg">
-    <h3><%= link_to suggestion.title, suggestion_path(suggestion)%></h3>
-    <div class="description">
-      <p><%= truncate(suggestion.description, length: 100) %></p>
-    </div>
-    <div class="user">
-      <ul class="list-inline">
-        <li><small><i class="fa fa-user"></i> <%= suggestion.user.username%></small></li>
-        <li><small><i class="fa fa-clock-o"></i> <%= time_ago_in_words(suggestion.created_at)%> ago</small></li>
-        <li><small>last updated <%= time_ago_in_words(suggestion.created_at)%></small></li>
-      </ul>
-
-    </div>
-    <div class="action">
-      <%= link_to "Edit", edit_suggestion_path(suggestion), class:"btn btn-primary"%>
-      <%= link_to "Delete", suggestion_path(suggestion), method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-danger"%>
-    </div>
-  </div>
-<% end %>
+<%= render "suggestion", obj:@suggestions%>

@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit,:update,:delete,:show]
+  before_action :require_same_user, only: [:update,:delete,:edit,:destroy]
+  before_action :require_admin, only: [:destroy]
+  def index
+    @users = User.all
+  end
+
   def new
     @user = User.new
   end
@@ -6,19 +13,19 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = "Hello #{@user.username}, you've been successfully signed up"
-      redirect_to suggestions_path
+      redirect_to user_path(@user)
     else
       render "new"
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+
   end
 
   def update
-    @user = User.find(params[:id])
 
     if @user.update(user_params)
       flash[:success] = "You've been successfully updated"
@@ -27,8 +34,38 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
+
+  def show
+
+  end
+
+  def destroy
+    @user = User.find_by(params[:id])
+    @user.destroy
+    flash[:danger] = "You've succesfully deleted"
+    redirect_to users_path
+  end
+
   private
   def user_params
     params.require(:user).permit(:username,:email,:password)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user && !current_user.admin?
+      flash[:danger] = "You only can edit or update your own profile"
+      redirect_to suggestions_path
+    end
+  end
+
+  def require_admin
+    if logged_in? && !current_user.admin?
+      flash[:danger] = "Only admin can use delete"
+      redirect_to root_path
+    end
   end
 end
